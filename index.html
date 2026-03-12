@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FFF8F0;
-    --warm: #F5E6D3;
-    --blush: #E8C5A0;
-    --rose: #C4856A;
-    --deep: #8B4A3C;
-    --dark: #2C1810;
+    --cream: #FFF0F0;
+    --warm: #FFD6D6;
+    --blush: #FF9999;
+    --rose: #CC0000;
+    --deep: #8B0000;
+    --dark: #1A0000;
     --gold: #D4A853;
     --popcorn: #F2C94C;
-    --film: #1A0A05;
+    --film: #0A0000;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +28,6 @@
     min-height: 100vh;
   }
 
-  /* FILM GRAIN OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -39,7 +38,6 @@
     opacity: 0.4;
   }
 
-  /* FILM STRIP TOP/BOTTOM */
   .film-strip {
     position: fixed;
     left: 0; right: 0;
@@ -52,23 +50,13 @@
   }
   .film-strip.bottom { bottom: 0; border-top: 2px solid #333; border-bottom: none; }
   .film-strip.top { top: 0; }
-  .film-holes {
-    display: flex;
-    gap: 0;
-    width: 100%;
-  }
+  .film-holes { display: flex; gap: 0; width: 100%; }
   .film-hole {
-    width: 32px;
-    height: 28px;
-    min-width: 32px;
-    border: 2px solid #444;
-    border-radius: 4px;
-    margin: 0 6px;
-    background: #000;
-    flex-shrink: 0;
+    width: 32px; height: 28px; min-width: 32px;
+    border: 2px solid #444; border-radius: 4px;
+    margin: 0 6px; background: #000; flex-shrink: 0;
   }
 
-  /* PAGES */
   .page {
     display: none;
     min-height: 100vh;
@@ -77,18 +65,9 @@
   }
   .page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-  /* STARS BACKGROUND */
-  .stars {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .stars { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
   .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
+    position: absolute; background: white; border-radius: 50%;
     animation: twinkle var(--dur, 3s) ease-in-out infinite;
   }
   @keyframes twinkle {
@@ -96,16 +75,11 @@
     50% { opacity: 1; transform: scale(1.3); }
   }
 
-  /* PAGE 1 - INVITE */
   .invite-card {
-    position: relative;
-    z-index: 10;
-    background: linear-gradient(135deg, rgba(44,24,16,0.95) 0%, rgba(26,10,5,0.98) 100%);
+    position: relative; z-index: 10;
+    background: linear-gradient(135deg, rgba(60,0,0,0.95) 0%, rgba(10,0,0,0.98) 100%);
     border: 1px solid var(--gold);
-    border-radius: 20px;
-    padding: 50px 40px;
-    max-width: 480px;
-    width: 100%;
+    border-radius: 20px; padding: 50px 40px; max-width: 480px; width: 100%;
     text-align: center;
     box-shadow: 0 0 60px rgba(212,168,83,0.15), 0 0 120px rgba(212,168,83,0.05), inset 0 1px 0 rgba(255,255,255,0.05);
     animation: cardIn 1s ease-out both;
@@ -117,9 +91,7 @@
   }
 
   .movie-icon {
-    font-size: 64px;
-    display: block;
-    margin-bottom: 20px;
+    font-size: 64px; display: block; margin-bottom: 20px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 20px rgba(212,168,83,0.5));
   }
@@ -131,89 +103,45 @@
   .invite-card h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 6vw, 3rem);
-    color: var(--gold);
-    line-height: 1.1;
-    margin-bottom: 8px;
+    color: var(--gold); line-height: 1.1; margin-bottom: 8px;
     text-shadow: 0 0 30px rgba(212,168,83,0.4);
   }
-
   .invite-card .subtitle {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    color: var(--blush);
-    font-size: 1rem;
-    margin-bottom: 30px;
-    opacity: 0.8;
+    font-family: 'Lora', serif; font-style: italic;
+    color: var(--blush); font-size: 1rem; margin-bottom: 30px; opacity: 0.8;
   }
-
   .divider {
-    width: 80px;
-    height: 1px;
+    width: 80px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     margin: 0 auto 30px;
   }
-
-  .question-text {
-    font-size: 1.1rem;
-    color: var(--warm);
-    line-height: 1.7;
-    margin-bottom: 36px;
-  }
-
-  .btn-group {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  .question-text { font-size: 1.1rem; color: var(--warm); line-height: 1.7; margin-bottom: 36px; }
+  .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
   .btn-yes {
     background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
-    color: var(--dark);
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 14px 36px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(212,168,83,0.3);
+    color: var(--dark); font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1.1rem; padding: 14px 36px;
+    border: none; border-radius: 50px; cursor: pointer;
+    transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212,168,83,0.3);
     letter-spacing: 0.05em;
   }
-  .btn-yes:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(212,168,83,0.5);
-  }
+  .btn-yes:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 30px rgba(212,168,83,0.5); }
 
   .btn-no {
-    background: transparent;
-    color: var(--blush);
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 1rem;
-    padding: 14px 36px;
-    border: 1px solid rgba(196,133,106,0.3);
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+    background: transparent; color: var(--blush);
+    font-family: 'Lora', serif; font-style: italic; font-size: 1rem;
+    padding: 14px 36px; border: 1px solid rgba(204,0,0,0.3);
+    border-radius: 50px; cursor: pointer; transition: all 0.3s ease; position: relative;
   }
   .btn-no:hover { border-color: var(--rose); color: var(--rose); }
 
-  /* PAGE 2 - AWW */
   .aww-card {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    max-width: 480px;
+    position: relative; z-index: 10; text-align: center; max-width: 480px;
     animation: cardIn 0.8s ease-out both;
   }
   .hearts-burst {
-    font-size: 48px;
-    animation: burst 0.6s ease-out both;
-    display: block;
-    margin-bottom: 20px;
+    font-size: 48px; animation: burst 0.6s ease-out both; display: block; margin-bottom: 20px;
   }
   @keyframes burst {
     0% { transform: scale(0); opacity: 0; }
@@ -223,221 +151,91 @@
   .aww-card h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 7vw, 3.5rem);
-    color: var(--gold);
-    margin-bottom: 16px;
-    line-height: 1.1;
+    color: var(--gold); margin-bottom: 16px; line-height: 1.1;
   }
-  .aww-card p {
-    color: var(--blush);
-    font-style: italic;
-    font-size: 1.1rem;
-    margin-bottom: 36px;
-    line-height: 1.6;
-  }
+  .aww-card p { color: var(--blush); font-style: italic; font-size: 1.1rem; margin-bottom: 36px; line-height: 1.6; }
   .btn-continue {
     background: linear-gradient(135deg, var(--deep) 0%, var(--rose) 100%);
-    color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    padding: 14px 40px;
-    border: 1px solid var(--gold);
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.05em;
+    color: var(--cream); font-family: 'Playfair Display', serif;
+    font-size: 1rem; padding: 14px 40px; border: 1px solid var(--gold);
+    border-radius: 50px; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.05em;
   }
   .btn-continue:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,168,83,0.2); }
 
-  /* CONFETTI */
   .confetti-piece {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: confettiFall linear forwards;
-    pointer-events: none;
-    z-index: 999;
+    position: fixed; width: 8px; height: 8px; border-radius: 50%;
+    animation: confettiFall linear forwards; pointer-events: none; z-index: 999;
   }
   @keyframes confettiFall {
     0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
     100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
   }
 
-  /* PAGE 3 - ITINERARY */
-  .itinerary-wrap {
-    position: relative;
-    z-index: 10;
-    max-width: 560px;
-    width: 100%;
-    animation: cardIn 0.8s ease-out both;
-  }
-
-  .itinerary-header {
-    text-align: center;
-    margin-bottom: 32px;
-  }
+  .itinerary-wrap { position: relative; z-index: 10; max-width: 560px; width: 100%; animation: cardIn 0.8s ease-out both; }
+  .itinerary-header { text-align: center; margin-bottom: 32px; }
   .itinerary-header .emoji-big { font-size: 48px; display: block; margin-bottom: 12px; }
-  .itinerary-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
+  .itinerary-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--gold); margin-bottom: 6px; }
   .itinerary-header p { color: var(--blush); font-style: italic; font-size: 0.95rem; }
 
-  .timeline {
-    position: relative;
-    padding-left: 28px;
-  }
+  .timeline { position: relative; padding-left: 28px; }
   .timeline::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--gold), var(--rose), transparent);
+    content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(180deg, var(--gold), var(--rose), transparent);
   }
 
   .timeline-item {
     position: relative;
-    background: linear-gradient(135deg, rgba(44,24,16,0.8), rgba(26,10,5,0.9));
-    border: 1px solid rgba(212,168,83,0.2);
-    border-radius: 16px;
-    padding: 20px 22px;
-    margin-bottom: 16px;
-    transition: all 0.3s ease;
-    cursor: default;
+    background: linear-gradient(135deg, rgba(60,0,0,0.8), rgba(10,0,0,0.9));
+    border: 1px solid rgba(212,168,83,0.2); border-radius: 16px;
+    padding: 20px 22px; margin-bottom: 16px; transition: all 0.3s ease; cursor: default;
   }
-  .timeline-item:hover {
-    border-color: rgba(212,168,83,0.5);
-    transform: translateX(4px);
-    box-shadow: 0 4px 20px rgba(212,168,83,0.1);
-  }
+  .timeline-item:hover { border-color: rgba(212,168,83,0.5); transform: translateX(4px); box-shadow: 0 4px 20px rgba(212,168,83,0.1); }
 
   .timeline-dot {
-    position: absolute;
-    left: -33px;
-    top: 24px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--film);
+    position: absolute; left: -33px; top: 24px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); border: 2px solid #0A0000;
     box-shadow: 0 0 10px rgba(212,168,83,0.6);
   }
 
-  .timeline-time {
-    font-size: 0.75rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    font-family: 'Lora', serif;
-  }
+  .timeline-time { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; font-family: 'Lora', serif; }
+  .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--cream); margin-bottom: 6px; }
+  .timeline-desc { font-size: 0.88rem; color: var(--blush); font-style: italic; line-height: 1.6; }
 
-  .timeline-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: var(--cream);
-    margin-bottom: 6px;
-  }
-
-  .timeline-desc {
-    font-size: 0.88rem;
-    color: var(--blush);
-    font-style: italic;
-    line-height: 1.6;
-  }
-
-  .movie-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
+  .movie-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .movie-tag {
-    background: rgba(212,168,83,0.1);
-    border: 1px solid rgba(212,168,83,0.3);
-    color: var(--gold);
-    font-size: 0.8rem;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-family: 'Lora', serif;
-    transition: all 0.2s;
+    background: rgba(212,168,83,0.1); border: 1px solid rgba(212,168,83,0.3);
+    color: var(--gold); font-size: 0.8rem; padding: 5px 14px;
+    border-radius: 20px; font-family: 'Lora', serif; transition: all 0.2s;
   }
   .movie-tag:hover { background: rgba(212,168,83,0.2); border-color: var(--gold); }
 
   .btn-note {
-    margin-top: 24px;
-    width: 100%;
-    background: transparent;
-    border: 1px solid rgba(212,168,83,0.3);
-    color: var(--gold);
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    padding: 14px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    margin-top: 24px; width: 100%; background: transparent;
+    border: 1px solid rgba(212,168,83,0.3); color: var(--gold);
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    padding: 14px 20px; border-radius: 50px; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
   }
   .btn-note:hover { background: rgba(212,168,83,0.08); border-color: var(--gold); transform: translateY(-2px); }
 
-  /* PAGE 4 - CLOSING NOTE */
   .note-card {
-    position: relative;
-    z-index: 10;
-    background: linear-gradient(135deg, rgba(44,24,16,0.97), rgba(26,10,5,0.99));
-    border: 1px solid rgba(212,168,83,0.3);
-    border-radius: 20px;
-    padding: 48px 40px;
-    max-width: 500px;
-    width: 100%;
-    animation: cardIn 0.8s ease-out both;
+    position: relative; z-index: 10;
+    background: linear-gradient(135deg, rgba(60,0,0,0.97), rgba(10,0,0,0.99));
+    border: 1px solid rgba(212,168,83,0.3); border-radius: 20px;
+    padding: 48px 40px; max-width: 500px; width: 100%; animation: cardIn 0.8s ease-out both;
   }
   .note-card .letter-icon { font-size: 40px; display: block; text-align: center; margin-bottom: 20px; }
-  .note-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .note-card .letter-text {
-    color: var(--warm);
-    font-size: 0.95rem;
-    line-height: 1.85;
-    font-style: italic;
-  }
-  .note-card .letter-text strong {
-    color: var(--gold);
-    font-style: normal;
-    font-family: 'Playfair Display', serif;
-  }
-  .note-card .sign-off {
-    margin-top: 28px;
-    text-align: right;
-    color: var(--rose);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-  }
-  .sparkle-bar {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 24px 0;
-  }
+  .note-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); text-align: center; margin-bottom: 20px; }
+  .note-card .letter-text { color: var(--warm); font-size: 0.95rem; line-height: 1.85; font-style: italic; }
+  .note-card .letter-text strong { color: var(--gold); font-style: normal; font-family: 'Playfair Display', serif; }
+  .note-card .sign-off { margin-top: 28px; text-align: right; color: var(--rose); font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+  .sparkle-bar { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px 0; }
   .final-emojis { text-align: center; font-size: 32px; letter-spacing: 8px; margin-top: 20px; animation: float 3s ease-in-out infinite; }
 
-  /* PAGE TRANSITIONS */
-  .page { animation: none; }
   .fade-in { animation: fadeIn 0.6s ease both; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* NO button wiggle */
   @keyframes wiggle {
     0%, 100% { transform: rotate(0deg) translateX(0); }
     20% { transform: rotate(-5deg) translateX(-5px); }
@@ -446,15 +244,7 @@
     80% { transform: rotate(3deg) translateX(3px); }
   }
   .wiggle { animation: wiggle 0.5s ease both; }
-
-  .no-msg {
-    margin-top: 12px;
-    color: var(--rose);
-    font-style: italic;
-    font-size: 0.85rem;
-    min-height: 20px;
-    transition: opacity 0.3s;
-  }
+  .no-msg { margin-top: 12px; color: var(--rose); font-style: italic; font-size: 0.85rem; min-height: 20px; }
 
   @media (max-width: 480px) {
     .invite-card, .note-card { padding: 36px 24px; }
@@ -465,14 +255,10 @@
 </head>
 <body>
 
-<!-- Stars -->
 <div class="stars" id="stars"></div>
-
-<!-- Film strips -->
 <div class="film-strip top"><div class="film-holes" id="filmHolesTop"></div></div>
 <div class="film-strip bottom"><div class="film-holes" id="filmHolesBottom"></div></div>
 
-<!-- ===== PAGE 1: INVITE ===== -->
 <div class="page active" id="page1">
   <div class="invite-card">
     <span class="movie-icon">🎬</span>
@@ -492,7 +278,6 @@
   </div>
 </div>
 
-<!-- ===== PAGE 2: AWW ===== -->
 <div class="page" id="page2">
   <div class="aww-card">
     <span class="hearts-burst">🥹💛🎉</span>
@@ -502,7 +287,6 @@
   </div>
 </div>
 
-<!-- ===== PAGE 3: ITINERARY ===== -->
 <div class="page" id="page3">
   <div class="itinerary-wrap">
     <div class="itinerary-header">
@@ -510,85 +294,69 @@
       <h1>Date Night Itinerary</h1>
       <p>Saturday Night — just for us</p>
     </div>
-
     <div class="timeline">
-
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-time">⏰ 9:00 – 9:30 PM</div>
         <div class="timeline-title">Link Up 📱</div>
-        <div class="timeline-desc">Connect via FaceTime or Discord, get comfy, and settle in. No rush, no stress — just us.</div>
+        <div class="timeline-desc">FaceTime or Discord, no stress — just us.</div>
       </div>
-
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-time">🍔 First Up</div>
+        <div class="timeline-time">🍔 First</div>
         <div class="timeline-title">Food Time 🍿</div>
-        <div class="timeline-desc">McChicken's and snacks??? (this is fully negotiable lol, bring whatever sounds good to you 😭)</div>
+        <div class="timeline-desc">McChicken's and snacks??? (this is negotiable lol we can talk about it 😭)</div>
       </div>
-
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-time">🎮 Optional Vibes</div>
         <div class="timeline-title">Game Time (maybe)</div>
         <div class="timeline-desc">If the vibes are right — a fun detective game or whatever sounds fun. Or we skip straight to the movie. Depends on us ✨</div>
       </div>
-
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-time">🎬 Main Event</div>
         <div class="timeline-title">Movie / Show Time</div>
         <div class="timeline-desc">Pick your poison 👇 (or suggest something else, I'm open!)</div>
         <div class="movie-options">
-          <span class="movie-tag">📺 Ed, Edd n Eddy</span>
-          <span class="movie-tag">🏠 Trap House</span>
-          <span class="movie-tag">🌙 The Night Shift</span>
-          <span class="movie-tag">💛 Love Story</span>
-          <span class="movie-tag">✨ Surprise me</span>
+          <span class="movie-tag">Ed, Edd n Eddy</span>
+          <span class="movie-tag">Trap House</span>
+          <span class="movie-tag">The Night Shift</span>
+          <span class="movie-tag">Love Story</span>
+          <span class="movie-tag">Or any movie / show we find</span>
         </div>
       </div>
-
     </div>
-
     <button class="btn-note" onclick="goToNote()">💌 Read my note for you →</button>
   </div>
 </div>
 
-<!-- ===== PAGE 4: CLOSING NOTE ===== -->
 <div class="page" id="page4">
   <div class="note-card">
     <span class="letter-icon">💌</span>
     <h2>A lil note for you</h2>
     <div class="sparkle-bar"></div>
     <p class="letter-text">
-      I know we've both been <strong>really stressed lately</strong> and life has been life-ing… and us seeing each other kept getting pushed back. (We still have time if you wanna come here — I'll pay. I know you're busy, it's okay 🤍)<br><br>
-      But idk… I just wanted to do something cool. I wasn't trying to make an itinerary for STL but since that got pushed back, I decided to do <strong>this</strong> instead.<br><br>
+      I know we've both been <strong>really stressed lately</strong> and life has been lifeing… and us seeing each other got pushed back. (We still have time if you wanna come here — I'll pay. I know you're busy, it's okay 🤍)<br><br>
+      I just wanted to do something cool and special. I was making an itinerary for STL but since that got pushed back, I decided to do <strong>this</strong> instead.<br><br>
       I hope you like it. 🥺
     </p>
     <div class="sparkle-bar"></div>
-    <div class="sign-off">— yours 💛</div>
+    <div class="sign-off">— CLM 💛</div>
     <div class="final-emojis">🎬🍿💛🌙✨</div>
   </div>
 </div>
 
 <script>
-  // Generate stars
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 80; i++) {
     const s = document.createElement('div');
     s.className = 'star';
     const size = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%;
-      top:${Math.random()*100}%;
-      --dur:${2 + Math.random()*4}s;
-      animation-delay:${Math.random()*5}s;
-    `;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s;`;
     starsEl.appendChild(s);
   }
 
-  // Generate film holes
   function makeHoles(id) {
     const el = document.getElementById(id);
     const count = Math.ceil(window.innerWidth / 44) + 2;
@@ -601,12 +369,10 @@
   makeHoles('filmHolesTop');
   makeHoles('filmHolesBottom');
 
-  // Navigation
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const el = document.getElementById(id);
-    el.classList.add('active');
-    el.classList.add('fade-in');
+    el.classList.add('active', 'fade-in');
     setTimeout(() => el.classList.remove('fade-in'), 700);
     window.scrollTo(0, 0);
   }
@@ -630,29 +396,17 @@
     noCount++;
   }
 
-  function sayYes() {
-    spawnConfetti();
-    setTimeout(() => showPage('page2'), 400);
-  }
-
+  function sayYes() { spawnConfetti(); setTimeout(() => showPage('page2'), 400); }
   function goToItinerary() { showPage('page3'); }
   function goToNote() { showPage('page4'); }
 
   function spawnConfetti() {
-    const colors = ['#D4A853','#C4856A','#F2C94C','#E8C5A0','#fff'];
+    const colors = ['#D4A853','#CC0000','#F2C94C','#FF9999','#fff'];
     for (let i = 0; i < 60; i++) {
       setTimeout(() => {
         const c = document.createElement('div');
         c.className = 'confetti-piece';
-        c.style.cssText = `
-          left:${Math.random()*100}vw;
-          background:${colors[Math.floor(Math.random()*colors.length)]};
-          width:${6+Math.random()*8}px;
-          height:${6+Math.random()*8}px;
-          border-radius:${Math.random()>0.5?'50%':'2px'};
-          animation-duration:${2+Math.random()*2}s;
-          animation-delay:${Math.random()*0.5}s;
-        `;
+        c.style.cssText = `left:${Math.random()*100}vw;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;border-radius:${Math.random()>0.5?'50%':'2px'};animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*0.5}s;`;
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 4000);
       }, i * 30);
